@@ -18,8 +18,7 @@
         kind: VirtualMachine
         namespace: golden-image
   rules:
-    - name: Say Hello
-      condition: event.i == 1
+    - name: Notify
+      condition: event.type == "ADDED"
       action:
         debug:
-          msg: "Hello World!"
