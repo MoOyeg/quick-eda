@@ -1,0 +1,11 @@
+---
+- name: Test that wrong source fails
+  hosts: all
+  sources:
+    - ansible.eda.idonotexist:
+        limit: 6
+  rules:
+    - name: Debug
+      condition: event.i == 2
+      action:
+        debug:
