@@ -20,9 +20,17 @@
   rules:
     - name: Notify
       condition: event.type == "ADDED"
-      action:
+      actions:
         - debug:
             msg: "Checking for newly added VM resources"
+        - run_job_template:
+            organization: Default
+            name: update_ocpv
+    - name: Notify
+      condition: event.type == "MODIFIED
+      actions:
+        - debug:
+            msg: "VM has been modified"
         - run_job_template:
             organization: Default
             name: update_ocpv
