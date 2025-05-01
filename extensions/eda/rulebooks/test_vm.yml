@@ -21,4 +21,8 @@
     - name: Notify
       condition: event.type == "ADDED"
       action:
-        debug:
+        - debug:
+            msg: "Checking for newly added VM resources"
+        - run_job_template:
+            organization: Default
+            name: update_ocpv
