@@ -1,14 +1,25 @@
 - name: Listen for newly added VM resources
-      hosts: all
-      sources:
-        - sabre1041.eda.k8s:
-            apiVersion: kubevirt.io/v1
-            kind: VirtualMachine
-            namespace: test
-      rules:
-        - name: Execute Inventory Update
-          condition: event.type == "ADDED"
-          action:
-            run_job_template:
-              name: update_vm_inventory
-              organization: Default
+  hosts: all
+  sources:
+      #   - sabre1041.eda.k8s:
+      #       apiVersion: kubevirt.io/v1
+      #       kind: VirtualMachine
+      #       namespace: test
+      # rules:
+      #   - name: Execute Inventory Update
+      #     condition: event.type == "ADDED"
+      #     action:
+      #       run_job_template:
+      #         name: update_vm_inventory
+      #         organization: Default
+  sources:
+    - sabre1041.eda.k8s:
+        apiVersion: kubevirt.io/v1
+        kind: VirtualMachine
+        namespace: golden-image
+  rules:
+    - name: Say Hello
+      condition: event.i == 1
+      action:
+        debug:
+          msg: "Hello World!"
